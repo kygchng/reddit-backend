@@ -25,6 +25,12 @@ const App = () => {
     getComments();
   }, [])
 
+  const onLike = async() => {
+    console.log("like request received");
+    const response = await axios.put("http://localhost:4000/api/v1/reddit/like/comment/62ab84a980f4f4f99ddb2bf7/62ab8299b5e2f61dd4f57886")
+    console.log(response.data);
+  }
+
   
   return(
     <div>
@@ -32,7 +38,7 @@ const App = () => {
         post && <Post post = {post}/>
       }
       {
-        commentList && <CommentList comments = {commentList} />
+        commentList && <CommentList comments = {commentList} onLike = {onLike}/>
       }
     </div>
   )
